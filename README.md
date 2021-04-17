@@ -26,6 +26,9 @@ To manage league matches developed an sample android application.This applicatio
 - OOP Design
 - MVVM Design Architecture
 - Room Database
+- LifeCycle
+- Navigation
+- LiveData
 - Retrofit2
 - Jetpack Libraries
 
@@ -58,8 +61,6 @@ Bonus:
     //Room
     implementation "androidx.room:room-runtime:2.2.6"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     annotationProcessor "androidx.room:room-compiler:2.2.6"
 
     //Animation
