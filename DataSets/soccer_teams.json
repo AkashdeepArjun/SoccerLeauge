@@ -1,83 +1,84 @@
 [
-{"id":1,
-"name":"Takım 1"
+{"id":0,
+"team_name":"Takım 1"
+},
+{
+"id":1,
+"team_name":"Takım 2"
 },
 {
 "id":2,
-"name":"Takım 2"
+"team_name":"Takım 3"
 },
 {
 "id":3,
-"name":"Takım 3"
+"team_name":"Takım 4"
 },
 {
 "id":4,
-"name":"Takım 4"
+"team_name":"Takım 5"
 },
 {
 "id":5,
-"name":"Takım 5"
+"team_name":"Takım 6"
 },
 {
 "id":6,
-"name":"Takım 6"
+"team_name":"Takım 7"
+},
+{"id":7,
+"team_name":"Takım 8"
 },
 {
-"id":7,
-"name":"Takım 7"
-},
-{"id":8,
-"name":"Takım 8"
+"id":8,
+"team_name":"Takım 9"
 },
 {
 "id":9,
-"name":"Takım 9"
+"team_name":"Takım 10"
 },
 {
 "id":10,
-"name":"Takım 10"
+"team_name":"Takım 11"
 },
 {
 "id":11,
-"name":"Takım 11"
+"team_name":"Takım 12"
 },
 {
 "id":12,
-"name":"Takım 12"
+"team_name":"Takım 13"
 },
 {
 "id":13,
-"name":"Takım 13"
+"team_name":"Takım 14"
 },
 {
 "id":14,
-"name":"Takım 14"
+"team_name":"Takım 15"
 },
 {
 "id":15,
-"name":"Takım 15"
+"team_name":"Takım 16"
 },
 {
 "id":16,
-"name":"Takım 16"
+"team_name":"Takım 17"
+},
+{"id":17,
+"team_name":"Takım 18"
 },
 {
-"id":17,
-"name":"Takım 17"
+"id":18,
+"team_name":"Takım 19"
 },
-{"
-id":18,
-"name":"Takım 18"
-},
-{
+ {
 "id":19,
-"name":"Takım 19"
+"team_name":"Takım 20"
 },
 {
-"id":20,
-"name":"Takım 20"
-},
-{"id":21,
-"name":"Takım 21"
+"id": 20,
+"team_name":"Takım 21"
 }
+
 ]
