@@ -19,8 +19,11 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import kotlin.jvm.internal.Intrinsics;
 
 public class MainFragment extends Fragment {
 
@@ -28,20 +31,7 @@ public class MainFragment extends Fragment {
     private SoccerViewModel mViewModel;
     private TeamAdapter teamAdapter;
     private List<Team> teamList;
-/*
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        //return inflater.inflate(R.layout.fragment_fixture,container,false);
 
-            binding = FragmentOrderBinding.inflate(layoutInflater, container, false)
-            placeholderBinding = PlaceholderBinding.bind(binding.root)
-            placeholderBinding.tvPlaceholder.text = getString(R.string.please_wait)
-            return binding.root;
-        }
-
-    }
-    */
 
 
     @Override
@@ -50,7 +40,6 @@ public class MainFragment extends Fragment {
         init(view);
         eventHandler();
     }
-
 
 
     private void eventHandler() {
@@ -77,12 +66,20 @@ public class MainFragment extends Fragment {
 
     private void init(View view) {
 
-      teamAdapter = new TeamAdapter();
-        BaseActivity main = new BaseActivity();
-        mViewModel = main.soccerViewModel;
-        binding = FragmentMainBinding.bind(view);
-        binding.teamsRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.teamsRecycler.setAdapter(teamAdapter);
+
+        FragmentActivity activity = getActivity();
+        if (activity != null) {
+            this.mViewModel = ((BaseActivity) activity).getMViewModel();
+            FragmentMainBinding bind = FragmentMainBinding.bind(view);
+            this.binding = bind;
+            RecyclerView rw = bind.teamsRecycler;
+            rw.setLayoutManager(new LinearLayoutManager(rw.getContext()));
+            TeamAdapter teamAdapter = this.teamAdapter;
+            rw.setAdapter(teamAdapter);
+            return;
+        }
+
+
 
         }
 

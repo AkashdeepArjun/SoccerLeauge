@@ -33,6 +33,11 @@ public class BaseActivity extends AppCompatActivity {
         this.soccerViewModel = soccerViewModel;
     }
 
+    public final SoccerViewModel getMViewModel() {
+        SoccerViewModel soccerViewModel = this.soccerViewModel;
+        return soccerViewModel;
+    }
+
 
 
     @Override
