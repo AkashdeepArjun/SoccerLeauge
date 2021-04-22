@@ -18,6 +18,8 @@
 # Project Aim
 
 To manage league matches developed an sample android application.This application will be used to determine match fixture.
+##APK 
+
 
 # Technical
 ![Android](https://img.shields.io/badge/-Android-000000?style=flat&logo=Android&logoColor=green)
@@ -73,6 +75,10 @@ Bonus:
 ```
 
 # Screens
+<img src="https://github.com/akkayameva/SoccerLeauge/blob/main/Screens/home_page.jpeg?raw=true" width="300" height="500"> | <img src="https://github.com/akkayameva/SoccerLeauge/blob/main/Screens/animation_page.jpeg?raw=true" width="300" height="500"> | <img src="https://github.com/akkayameva/SoccerLeauge/blob/main/Screens/fixture_page.jpeg?raw=true" width="300" height="500">
+
+
+
 
 
 
