@@ -29,8 +29,31 @@ public class MainFragment extends Fragment {
 
     private FragmentMainBinding binding;
     private SoccerViewModel mViewModel;
-    private TeamAdapter teamAdapter;
+    private TeamAdapter teamsAdapter;
     private List<Team> teamList;
+
+    public MainFragment() {
+        super(R.layout.fragment_main);
+    }
+
+    public static final  List teamsList (MainFragment mainFragment) {
+        List<Team> list = mainFragment.teamList;
+        return list;
+    }
+
+    public static final TeamAdapter teamAdapter (MainFragment mainFragment) {
+        TeamAdapter teamAdapter = mainFragment.teamsAdapter;
+        return teamAdapter;
+    }
+
+    public final SoccerViewModel getMViewModel() {
+        SoccerViewModel soccerViewModel = this.mViewModel;
+        return soccerViewModel;
+    }
+
+    public final void setMViewModel(SoccerViewModel soccerViewModel) {
+        this.mViewModel = soccerViewModel;
+    }
 
 
 
@@ -74,7 +97,7 @@ public class MainFragment extends Fragment {
             this.binding = bind;
             RecyclerView rw = bind.teamsRecycler;
             rw.setLayoutManager(new LinearLayoutManager(rw.getContext()));
-            TeamAdapter teamAdapter = this.teamAdapter;
+            TeamAdapter teamAdapter = this.teamsAdapter;
             rw.setAdapter(teamAdapter);
             return;
         }
