@@ -28,13 +28,21 @@ public class MainFragment extends Fragment {
     private SoccerViewModel mViewModel;
     private TeamAdapter teamAdapter;
     private List<Team> teamList;
-
+/*
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fixture,container,false);
+        //return inflater.inflate(R.layout.fragment_fixture,container,false);
+
+            binding = FragmentOrderBinding.inflate(layoutInflater, container, false)
+            placeholderBinding = PlaceholderBinding.bind(binding.root)
+            placeholderBinding.tvPlaceholder.text = getString(R.string.please_wait)
+            return binding.root;
+        }
 
     }
+    */
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
