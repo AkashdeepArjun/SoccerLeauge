@@ -16,10 +16,10 @@ import androidx.room.Query;
 public interface TeamDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Team... teams);
+     void insert(Team... teams);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void saveFixture(ArrayList<Fixture> fixture);
+    void saveFixture(ArrayList<Fixture> fixtures);
 
 
     @Query("Select *FROM TeamTable")

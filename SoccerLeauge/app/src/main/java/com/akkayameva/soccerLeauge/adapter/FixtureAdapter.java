@@ -1,6 +1,7 @@
 package com.akkayameva.soccerLeauge.adapter;
 
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
@@ -37,6 +38,8 @@ public class FixtureAdapter extends FragmentStatePagerAdapter {
        return new FixtureListFragment(position, teamList);
     }
 
+
+
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
@@ -55,6 +58,8 @@ public class FixtureAdapter extends FragmentStatePagerAdapter {
         }
         return count;
     }
+
+
 
 
 }

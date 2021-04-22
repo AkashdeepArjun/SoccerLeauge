@@ -14,7 +14,7 @@ import retrofit2.Response;
 
 public class TeamRepository {
 
-    private TeamDB teamdb = null;
+    private TeamDB teamdb;
 
 
 
@@ -23,29 +23,36 @@ public class TeamRepository {
 
     }
 
+    public final TeamDB getDb() {
+        return this.teamdb;
+    }
+
+
      public Response<List<Team>> getTeams() {
-        //TeamAPIService.api.getTeams();
          return TeamAPIService.api.getTeams();
      }
 
-    public NetworkResult<List<Team>> insert(Team... teams) {
+
+    public void insert(Team... teams) {
         teamdb.databaseWriteExecutor.execute(() -> {
             teamdb.getTeamDao().insert(teams);
         });
 
-        return null;
     }
 
-    public void saveFixture (ArrayList<Fixture> fixtures){
+    public void saveFixture(ArrayList<Fixture> fixtures) {
         teamdb.databaseWriteExecutor.execute(() -> {
             teamdb.getTeamDao().saveFixture(fixtures);
         });
+
     }
 
 
     public LiveData<List<Team>> getSavedTeams() {
         return teamdb.getTeamDao().getAllTeams();
     }
+
+
 
     public LiveData<List<Fixture>> getSavedFixture(){
          return teamdb.getTeamDao().getAllFixture();

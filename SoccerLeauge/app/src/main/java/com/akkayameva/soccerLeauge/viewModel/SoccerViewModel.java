@@ -10,11 +10,18 @@ import com.akkayameva.soccerLeauge.util.NetworkResult;
 import com.akkayameva.soccerLeauge.util.Util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelKt;
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.jvm.internal.Intrinsics;
+import kotlinx.coroutines.CoroutineStart;
+import kotlinx.coroutines.Job;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -49,8 +56,12 @@ public class SoccerViewModel extends ViewModel {
 
     private NetworkResult<List<Team>> handleTeamsResponse(Response<List<Team>> response) {
 
-        if(response.isSuccessful() && !(response.body().isEmpty()) ){
-            return teamRepository.insert((Team) response.body());
+        if (response.isSuccessful()) {
+            Collection body = response.body();
+            if (!(body == null || body.isEmpty())) {
+                List<Team> body2 = response.body();
+                Log.d("Response","success");
+            }
         } else if (response.code() == 402){
             Log.d("Response","code 402");
         } else if (response.body().isEmpty()){
@@ -91,7 +102,7 @@ public class SoccerViewModel extends ViewModel {
     }
 
     private void saveFixture(ArrayList<Fixture> fixtureList) {
-            teamRepository.saveFixture(fixtureList);
+        teamRepository.saveFixture(fixtureList);
 
     }
 

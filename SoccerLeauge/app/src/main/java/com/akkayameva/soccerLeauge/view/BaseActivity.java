@@ -46,7 +46,7 @@ public class BaseActivity extends AppCompatActivity {
         }
 
 
-        TeamRepository teamRepository = new TeamRepository(TeamDB.createDatabase(this));
+        TeamRepository teamRepository = new TeamRepository(TeamDB.Companion.invoke(this));
         Application application = getApplication();
         ViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) this, (ViewModelProvider.Factory) new SoccerViewModelFactoryProvider(teamRepository, getApplication())).get(SoccerViewModel.class);
 
@@ -55,5 +55,4 @@ public class BaseActivity extends AppCompatActivity {
         soccerViewModel.deleteAllFixture();
     }
 
-    }
-
+}
