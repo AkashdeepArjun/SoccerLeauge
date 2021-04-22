@@ -15,6 +15,26 @@
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/soccer_animation" />
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="2dp"
+        android:fitsSystemWindows="false"
+        android:background="@color/red"
+        android:elevation="0dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:minHeight="?actionBarSize"
+            android:src="@drawable/kickball" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
 
     <com.google.android.material.tabs.TabLayout
 

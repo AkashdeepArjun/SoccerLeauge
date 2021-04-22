@@ -1,5 +1,6 @@
 package com.akkayameva.soccerLeauge.view;
 
+import android.app.Application;
 import android.os.Bundle;
 
 import com.akkayameva.soccerLeauge.R;
@@ -11,8 +12,11 @@ import com.akkayameva.soccerLeauge.viewModel.SoccerViewModel;
 import com.akkayameva.soccerLeauge.viewModel.SoccerViewModelFactoryProvider;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 import androidx.navigation.NavController;
+import kotlin.jvm.internal.Intrinsics;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -20,11 +24,21 @@ public class BaseActivity extends AppCompatActivity {
     ActivityBaseBinding binding;
     NavController controller;
 
+    public final SoccerViewModel getSoccerViewModel() {
+        SoccerViewModel soccerViewModel = this.soccerViewModel;
+        return soccerViewModel;
+    }
+
+    public final void setSoccerViewModel(SoccerViewModel soccerViewModel) {
+        this.soccerViewModel = soccerViewModel;
+    }
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_SoccerLeauge );
         if (Util.isNetworkAvailable(this)){
             setContentView(R.layout.activity_base);
         } else {
@@ -32,16 +46,14 @@ public class BaseActivity extends AppCompatActivity {
         }
 
 
-
         TeamRepository teamRepository = new TeamRepository(TeamDB.createDatabase(this));
-        SoccerViewModelFactoryProvider viewModelProviderFactory = new SoccerViewModelFactoryProvider(teamRepository, getApplication());
+        Application application = getApplication();
+        ViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) this, (ViewModelProvider.Factory) new SoccerViewModelFactoryProvider(teamRepository, getApplication())).get(SoccerViewModel.class);
 
-
-        soccerViewModel = new ViewModelProvider(this, viewModelProviderFactory).get(SoccerViewModel.class);
+        SoccerViewModel soccerViewModel = (SoccerViewModel) viewModel;
+        this.soccerViewModel = soccerViewModel;
         soccerViewModel.deleteAllFixture();
+    }
 
     }
 
-
-
-}
