@@ -39,13 +39,6 @@ public class FixtureFragment extends Fragment implements LifecycleObserver {
         return new FixtureFragment();
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_fixture, container, false);
-
-
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
