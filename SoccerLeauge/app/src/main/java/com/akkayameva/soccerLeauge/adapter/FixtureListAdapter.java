@@ -1,6 +1,7 @@
 package com.akkayameva.soccerLeauge.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import com.akkayameva.soccerLeauge.model.Fixture;
@@ -21,12 +22,12 @@ public class FixtureListAdapter extends RecyclerView.Adapter<FixtureListAdapter.
 
 
     private ArrayList<Fixture> fixtureList;
+    private int halfCount = 1;
     private Team[] teamList;
 
-    private int halfCount = 1;
-
-    public FixtureListAdapter(Team[] teamList) {
+    public FixtureListAdapter(Team[] teamList, ArrayList<Fixture> fixtureList) {
         this.teamList=teamList;
+        this.fixtureList = fixtureList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -41,7 +42,12 @@ public class FixtureListAdapter extends RecyclerView.Adapter<FixtureListAdapter.
         public final FixtureListItemRowBinding getBinding() {
             return this.binding;
         }
+
+        public final void setBinding(FixtureListItemRowBinding fixtureListItemRowBinding) {
+            this.binding = fixtureListItemRowBinding;
+        }
     }
+
 
 
 
@@ -53,10 +59,10 @@ public class FixtureListAdapter extends RecyclerView.Adapter<FixtureListAdapter.
     }
 
     public void updateList (List<Fixture> newFixtureList, int position){
-        if (teamList.size() % 2 == 0) {
-            halfCount = (position < teamList.size() - 1) ? 2 : 1;
+        if (teamList.length % 2 == 0) {
+            halfCount = (position < teamList.length - 1) ? 2 : 1;
         }else {
-            halfCount =( position < teamList.size()) ? 2 : 1;
+            halfCount =( position < teamList.length) ? 2 : 1;
         }
         fixtureList.clear();
         fixtureList.addAll(newFixtureList);
@@ -70,22 +76,23 @@ public class FixtureListAdapter extends RecyclerView.Adapter<FixtureListAdapter.
         if (!fixtureList.isEmpty()){
             if (halfCount == 1){
                 tv_home = holder.getBinding().tvTeamHome;
-                teamList = this.teamList;
+                Team[] teamArr = this.teamList;
                 home = fixtureList.get(position).getHomeTeam();
-                tv_home.setText(teamList.get(home).getName());
+                tv_home.setText(teamArr[home.intValue()].getName());
 
                 tv_away = holder.getBinding().tvTeamAway;
                 away = fixtureList.get(position).getAwayTeam();
-                tv_away.setText(teamList.get(away).getName());
+                tv_away.setText(teamArr[away.intValue()].getName());
+
             } else {
                 tv_home = holder.getBinding().tvTeamAway;
-                teamList = this.teamList;
+                Team[] teamArr = this.teamList;
                 home = fixtureList.get(position).getHomeTeam();
-                tv_home.setText(teamList.get(home).getName());
+                tv_home.setText(teamArr[home.intValue()].getName());
 
                 tv_away = holder.getBinding().tvTeamHome;
                 away = fixtureList.get(position).getAwayTeam();
-                tv_away.setText(teamList.get(away).getName());
+                tv_away.setText(teamArr[away.intValue()].getName());
 
 
             }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.akkayameva.soccerLeauge.R;
+import com.akkayameva.soccerLeauge.adapter.FixtureAdapter;
 import com.akkayameva.soccerLeauge.adapter.FixtureListAdapter;
 import com.akkayameva.soccerLeauge.databinding.FragmentFixtureBinding;
 import com.akkayameva.soccerLeauge.databinding.FragmentFixtureListBinding;
@@ -13,15 +14,18 @@ import com.akkayameva.soccerLeauge.model.Team;
 import com.akkayameva.soccerLeauge.view.BaseActivity;
 import com.akkayameva.soccerLeauge.viewModel.SoccerViewModel;
 
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.LifecycleObserver;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FixtureListFragment extends Fragment implements LifecycleObserver {
-    FragmentFixtureBinding binding;
+    FragmentFixtureListBinding binding;
     SoccerViewModel soccerViewModel;
     FixtureListAdapter adapter;
 
@@ -50,10 +54,13 @@ public class FixtureListFragment extends Fragment implements LifecycleObserver {
         FragmentActivity requireActivity = requireActivity();
         if (requireActivity != null) {
             soccerViewModel = ((BaseActivity) requireActivity).soccerViewModel;
-            binding = FragmentFixtureBinding.bind(view);
-            adapter = new FixtureListAdapter(teamList);
+            binding = FragmentFixtureListBinding.bind(view);
+            adapter = new FixtureListAdapter(teamList, new ArrayList());
 
-            //
+            RecyclerView recyclerView = binding.fixtureListRecycler;
+            FixtureListAdapter fixtureListAdapter = this.adapter;
+            recyclerView.setAdapter(fixtureListAdapter);
+            recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
             return;
 
     }
@@ -61,13 +68,13 @@ public class FixtureListFragment extends Fragment implements LifecycleObserver {
 
     private final void observerLiveData() {
         SoccerViewModel soccerViewModel = this.soccerViewModel;
-        soccerViewModel.getRoundList(calcPosition(this.position);
+        soccerViewModel.getRoundList(calcPosition(this.position));
     //observe(getViewLifecycleOwner(), new FixtureListFragment(this));
 
     }
 
     public int calcPosition (int position){
-        if (teamList.size() %2 == 0) {
+        if (teamList.length %2 == 0) {
             return position % ((teamList.length) - 1);
         } else {
             return position % (teamList.length);
