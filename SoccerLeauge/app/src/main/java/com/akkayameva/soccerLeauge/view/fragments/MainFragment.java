@@ -33,19 +33,21 @@ public class MainFragment extends Fragment  {
     private SoccerViewModel mViewModel;
     private TeamAdapter teamsAdapter;
     private List<Team> teamList;
-    MainFragment mainFragment;
+//     MainFragment mainFragment;
 
     public MainFragment() {
         super(R.layout.fragment_main);
     }
 
     public static final  List teamsList (MainFragment mainFragment) {
-        List<Team> list = mainFragment.teamList;
+        List<Team> list = this.teamList;
         return list;
     }
 
     public static final TeamAdapter teamAdapter (MainFragment mainFragment) {
-        TeamAdapter teamAdapter = mainFragment.teamsAdapter;
+//         TeamAdapter teamAdapter = mainFragment.teamsAdapter;             YOUR CODE
+        TeamAdapter teamAdapter = this.teamsAdapter;            
+        
         return teamAdapter;
     }
 
@@ -95,7 +97,7 @@ public class MainFragment extends Fragment  {
         soccerViewModel.getSavedTeams().observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
             @Override
             public void onChanged(List<Team> teams) {
-                mainFragment.teamList = teams;
+                teamList = teams;
 
             }
         });
@@ -139,7 +141,7 @@ public class MainFragment extends Fragment  {
             this.binding = bind;
             RecyclerView rw = bind.teamsRecycler;
             rw.setLayoutManager(new LinearLayoutManager(rw.getContext()));
-            TeamAdapter teamAdapter = this.teamsAdapter;
+            TeamAdapter teamAdapter=new TeamAdapter()
             rw.setAdapter(teamAdapter);
             return;
         }
