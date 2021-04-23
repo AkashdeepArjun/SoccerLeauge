@@ -8,8 +8,6 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
-
-
         android:id="@+id/fixture_list_recycler"
         android:layout_width="match_parent"
         android:layout_height="666dp"
@@ -19,7 +17,6 @@
         android:layout_marginBottom="65dp" />
 
     <TextView
-
         android:id="@+id/pass_team"
         android:layout_width="match_parent"
         android:layout_height="56dp"

@@ -78,21 +78,21 @@ public class FixtureListAdapter extends RecyclerView.Adapter<FixtureListAdapter.
                 tv_home = holder.getBinding().tvTeamHome;
                 Team[] teamArr = this.teamList;
                 home = fixtureList.get(position).getHomeTeam();
-                tv_home.setText(teamArr[home.intValue()].getName());
+                tv_home.setText(teamArr[home.intValue()].getTeamName());
 
                 tv_away = holder.getBinding().tvTeamAway;
                 away = fixtureList.get(position).getAwayTeam();
-                tv_away.setText(teamArr[away.intValue()].getName());
+                tv_away.setText(teamArr[away.intValue()].getTeamName());
 
             } else {
                 tv_home = holder.getBinding().tvTeamAway;
                 Team[] teamArr = this.teamList;
                 home = fixtureList.get(position).getHomeTeam();
-                tv_home.setText(teamArr[home.intValue()].getName());
+                tv_home.setText(teamArr[home.intValue()].getTeamName());
 
                 tv_away = holder.getBinding().tvTeamHome;
                 away = fixtureList.get(position).getAwayTeam();
-                tv_away.setText(teamArr[away.intValue()].getName());
+                tv_away.setText(teamArr[away.intValue()].getTeamName());
 
 
             }

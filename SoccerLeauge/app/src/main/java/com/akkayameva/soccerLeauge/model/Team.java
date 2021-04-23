@@ -63,11 +63,11 @@ public class Team implements Parcelable
         this.id = id;
     }
 
-    public String getName() {
+    public String getTeamName() {
         return team_name;
     }
 
-    public void setName(String name) {
+    public void setTeamName(String name) {
         this.team_name = name;
     }
 

@@ -1,17 +1,16 @@
 package com.akkayameva.soccerLeauge.view.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.akkayameva.soccerLeauge.R;
 import com.akkayameva.soccerLeauge.adapter.TeamAdapter;
 import com.akkayameva.soccerLeauge.databinding.FragmentMainBinding;
 import com.akkayameva.soccerLeauge.model.Team;
+import com.akkayameva.soccerLeauge.util.NetworkResult;
 import com.akkayameva.soccerLeauge.view.BaseActivity;
-import com.akkayameva.soccerLeauge.view.fragments.MainFragmentDirections;
 import com.akkayameva.soccerLeauge.viewModel.SoccerViewModel;
 
 import java.util.List;
@@ -20,17 +19,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import kotlin.jvm.internal.Intrinsics;
 
-public class MainFragment extends Fragment {
+
+public class MainFragment extends Fragment  {
 
     private FragmentMainBinding binding;
     private SoccerViewModel mViewModel;
     private TeamAdapter teamsAdapter;
     private List<Team> teamList;
+    MainFragment mainFragment;
 
     public MainFragment() {
         super(R.layout.fragment_main);
@@ -62,7 +65,46 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         init(view);
         eventHandler();
+        observeLiveData();
     }
+
+    private final void observeLiveData() {
+        NetworkResult<List<Team>> response = null;
+        SoccerViewModel soccerViewModel = this.mViewModel;
+        soccerViewModel.teams.observe(getViewLifecycleOwner(), new Observer<NetworkResult<List<Team>>>() {
+            @Override
+            public void onChanged(NetworkResult<List<Team>> response) {
+                if (response instanceof NetworkResult.Success) {
+                    //showButton();
+                    //hideProgressBar();
+                    NetworkResult.Success success = (NetworkResult.Success) response;
+                    MainFragment.teamAdapter(mainFragment).getDiffer().submitList((List<Team>) response);
+                } else if (response instanceof NetworkResult.Failure) {
+                    //hideProgressBar();
+                    Log.e("","fail");
+                } else if (response instanceof NetworkResult.Loading) {
+                   // showProgressBar();
+                   // hideButton();
+                    Log.e("","fail");
+                }
+
+            }
+        });
+
+
+        soccerViewModel.getSavedTeams().observe(getViewLifecycleOwner(), new Observer<List<Team>>() {
+            @Override
+            public void onChanged(List<Team> teams) {
+                mainFragment.teamList = teams;
+
+            }
+        });
+
+
+    }
+
+
+
 
 
     private void eventHandler() {

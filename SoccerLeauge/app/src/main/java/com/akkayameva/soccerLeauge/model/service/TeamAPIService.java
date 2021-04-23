@@ -22,8 +22,8 @@ public class TeamAPIService {
 
             retrofit = new Retrofit.Builder()
 
-                    .addConverterFactory(GsonConverterFactory.create())
                     .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
                     .client(oktHttpClient)
                     .build();
         }

@@ -14,14 +14,9 @@ import java.util.Collection;
 import java.util.List;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelKt;
-import kotlin.coroutines.Continuation;
-import kotlin.coroutines.CoroutineContext;
-import kotlin.jvm.internal.Intrinsics;
-import kotlinx.coroutines.CoroutineStart;
-import kotlinx.coroutines.Job;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -45,11 +40,8 @@ public class SoccerViewModel extends ViewModel {
 
     public void getTeams(){
 
-        //teams.postValue(NetworkResult.Loading.class);
-
         Response<List<Team>> response = teamRepository.getTeams();
         teams.postValue(handleTeamsResponse(response));
-
 
 
     }
@@ -78,12 +70,13 @@ public class SoccerViewModel extends ViewModel {
         teamRepository.deleteAllFixture();
     }
 
-    public void getSavedFixture() {
-        teamRepository.getSavedFixture();
+    public LiveData<List<Fixture>> getSavedFixture() {
+
+        return teamRepository.getSavedFixture();
     }
 
-    public void getSavedTeams(){
-        teamRepository.getSavedTeams();
+    public LiveData<List<Team>> getSavedTeams(){
+        return teamRepository.getSavedTeams();
     }
 
     public void getRoundList(int count){

@@ -49,9 +49,6 @@ public class TeamAdapter  extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
 
 
 
-
-
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -66,7 +63,7 @@ public class TeamAdapter  extends RecyclerView.Adapter<TeamAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         TextView textView = holder.getBinding().tvTeamName;
-        textView.setText(this.mDiff.getCurrentList().get(position).getName());
+        textView.setText(this.mDiff.getCurrentList().get(position).getTeamName());
 
     }
 

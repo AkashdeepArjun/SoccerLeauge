@@ -4,7 +4,6 @@ import com.akkayameva.soccerLeauge.model.db.TeamDB;
 import com.akkayameva.soccerLeauge.model.Fixture;
 import com.akkayameva.soccerLeauge.model.Team;
 import com.akkayameva.soccerLeauge.model.service.TeamAPIService;
-import com.akkayameva.soccerLeauge.util.NetworkResult;
 
 import java.util.ArrayList;
 import java.util.List;
